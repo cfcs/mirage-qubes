@@ -72,8 +72,12 @@ let decode_FOCUS buf =
   } in
   Focus focus
 
+let _decode_MSG_DESTROY buf =
+  Log.warn (fun f -> f "Event: DESTROY: %s" (Cstruct.to_string buf)) ;
+  Window_destroy
+
 let decode_MSG_CLOSE buf =
-  Log.warn (fun f -> f "Event: CLOSE: %a" Cstruct.hexdump_pp buf) ;
+  Log.warn (fun f -> f "Event: CLOSE: %s" (Cstruct.to_string buf)) ;
   Window_close
 
 let decode_CLIPBOARD_DATA buf =
